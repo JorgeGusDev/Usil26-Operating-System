@@ -5,6 +5,8 @@ Este laboratorio crea dos procesos hijos mediante `fork()` y los coloca en condi
 ## Código
 
 ```c
+%%writefile scheduling.c
+
 #include <stdio.h>
 #include <unistd.h>
 #include <sys/wait.h>
@@ -13,6 +15,7 @@ void trabajar(char *nombre) {
 
     printf("%s | PID: %d | Listo para ejecutar\n",
            nombre, getpid());
+
 
     volatile long resultado = 0;
 
