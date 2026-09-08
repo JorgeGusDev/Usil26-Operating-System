@@ -62,7 +62,7 @@ int main() {
 ## Compilación y ejecución
 
 ```bash
-gcc race_condition.c -o race_condition
+!gcc race_condition.c -o race_condition
 ```
 
 Ejecute:
