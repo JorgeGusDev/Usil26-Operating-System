@@ -3,6 +3,7 @@
 Cree el archivo `race_condition.c`:
 
 ```c
+%%writefile race_condition.c
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
