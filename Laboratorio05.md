@@ -1,4 +1,4 @@
-# Laboratorio 04 - Administración de Ubuntu
+# Laboratorio 05 - Administración de Ubuntu
 
 ## Administración básica de Ubuntu
 
