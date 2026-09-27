@@ -1,5 +1,5 @@
 
-## LABORATORIO 06 — Page Fault en Linux
+## LABORATORIO 07 — Page Fault en Linux
 
 ### Programa `page_fault.c`
 
