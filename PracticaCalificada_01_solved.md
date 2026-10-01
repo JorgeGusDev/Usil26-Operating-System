@@ -263,33 +263,6 @@ Valor obtenido: 200000
 
 El valor sin mutex puede variar en cada ejecución debido a la condición de carrera.
 
-### c) Condición de carrera — 2 puntos
 
-Los dos procesos modifican concurrentemente la misma variable `contador`. La operación de incremento implica leer el valor, modificarlo y escribirlo nuevamente. Si ambos procesos acceden simultáneamente al mismo valor, uno puede sobrescribir el incremento realizado por el otro.
-
-Por eso, aunque el valor esperado sea `200000`, el valor obtenido sin sincronización puede ser menor.
-
-### d) Solución mediante mutex — 2 puntos
-
-El mutex protege la sección crítica:
-
-```c
-pthread_mutex_lock(&datos->mutex);
-
-datos->contador++;
-
-pthread_mutex_unlock(&datos->mutex);
-```
-
-`lock()` adquiere el mutex y permite que un solo proceso entre a la sección crítica. Si otro proceso intenta entrar mientras el mutex está ocupado, debe esperar.
-
-`unlock()` libera el mutex para que otro proceso pueda acceder a la sección crítica.
-
-Con esta sincronización, los incrementos no se pierden y el valor obtenido debe coincidir con el esperado:
-
-```text
-Valor esperado: 200000
-Valor obtenido: 200000
-```
 ```
 
