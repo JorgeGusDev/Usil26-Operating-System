@@ -79,45 +79,4 @@ gcc deadlock.c -o deadlock -pthread
 
 El programa puede quedar ejecutándose indefinidamente porque ambos hilos quedan esperando el mutex que posee el otro.
 
-### Actividad del estudiante
 
-El estudiante debe:
-
-**1. Identificar el deadlock**
-
-Determinar qué mutex posee cada hilo y cuál está esperando.
-
-**2. Identificar las condiciones**
-
-Explicar cuáles de las cuatro condiciones del deadlock están presentes:
-
-```text
-Mutual Exclusion
-Hold and Wait
-No Preemption
-Circular Wait
-```
-
-**3. Corregir el programa**
-
-Modificar el código para garantizar que ambos hilos adquieran los mutex **siempre en el mismo orden**.
-
-Por ejemplo:
-
-```text
-T₁ → mutex1 → mutex2
-
-T₂ → mutex1 → mutex2
-```
-
-**4. Comprobar la solución**
-
-Ejecutar nuevamente el programa y verificar que ambos hilos puedan finalizar.
-
-### Pregunta de análisis
-
-**¿Por qué establecer un orden global para adquirir los mutex permite eliminar la posibilidad de deadlock en este programa?**
-
-Esto queda muy bien como laboratorio porque el estudiante **primero observa el interbloqueo, identifica la causa y finalmente corrige el código**, en lugar de limitarse a estudiar la definición.
-
-También podemos hacer una **versión más completa del laboratorio usando `lockdep` o herramientas de Linux para detectar el problema**, pero para una primera práctica yo empezaría con este C + `pthread`.
