@@ -1,6 +1,6 @@
 
 
-# Administración de cuentas en Windows
+# Lab10_1. Administración de cuentas en Windows
 
 Guía para crear, comprobar, utilizar y eliminar cuentas locales mediante PowerShell. Ejecuta los comandos administrativos en **PowerShell como administrador**.
 
