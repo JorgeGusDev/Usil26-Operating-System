@@ -1,4 +1,4 @@
-# Administración de usuarios y grupos en Ubuntu Linux
+# Lab10_2. Administración de usuarios y grupos en Ubuntu Linux
 
 Guía para crear, comprobar, utilizar y eliminar cuentas locales mediante la terminal de Ubuntu.
 
