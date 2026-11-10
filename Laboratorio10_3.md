@@ -1,6 +1,6 @@
 
 
-# Administración de permisos de archivos y directorios en Ubuntu
+# Lab10_3. Administración de permisos de archivos y directorios en Ubuntu
 
 ## 1. Comprender los permisos de Linux
 
