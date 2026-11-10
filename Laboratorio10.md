@@ -183,26 +183,6 @@ La cuenta ya no debe aparecer.
 
 ## 6. Resumen de comandos
 
-| Operación | Comando |
-|---|---|
-| Listar usuarios | `Get-LocalUser` |
-| Crear usuario | `New-LocalUser` |
-| Consultar usuario | `Get-LocalUser -Name "UserLocal01"` |
-| Habilitar usuario | `Enable-LocalUser -Name "UserLocal01"` |
-| Listar grupos | `Get-LocalGroup` |
-| Consultar integrantes | `Get-LocalGroupMember -Group "Usuarios"` |
-| Agregar a un grupo | `Add-LocalGroupMember -Group "Usuarios" -Member "UserLocal01"` |
-| Eliminar usuario | `Remove-LocalUser -Name "UserLocal01"` |
-| Identificar sesión actual | `whoami` |
+El estudiante creará, configurará, verificará y eliminará una cuenta de usuario local en Windows 10 Pro, utilizando su propio apellido como identificador (por ejemplo, `Garcia01`). Asimismo, explorará la administración de usuarios y grupos y su relación con la autenticación, autorización y seguridad del sistema operativo.
 
-## 7. Consideraciones de seguridad
-
-- Ejecuta las operaciones administrativas desde PowerShell como administrador.
-- Utiliza contraseñas robustas y no reutilices contraseñas personales en prácticas.
-- Mantén las cuentas de uso cotidiano como usuarios estándar.
-- Concede privilegios administrativos solo cuando sean necesarios.
-- Distingue entre **autenticación** (comprobar quién inicia sesión) y **autorización** (determinar qué puede hacer esa cuenta).
-"""
-path = "/mnt/data/guia_cuentas_locales_windows10_pro.md"
-pypandoc.convert_text(md, "md", format="md", outputfile=path, extra_args=["--standalone"])
-print(path)
+Finalmente, presentará un informe individual que incluya los comandos ejecutados, capturas de pantalla de los procedimientos realizados y una breve explicación de los resultados obtenidos.
