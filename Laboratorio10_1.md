@@ -181,8 +181,7 @@ La cuenta ya no debe aparecer.
 
 **Importante:** `Remove-LocalUser` elimina la cuenta, pero no necesariamente elimina su carpeta de perfil y sus archivos de `C:\\Users\\UserLocal01`. Comprueba que no necesitas esos archivos antes de borrarlos manualmente.
 
-## 6. Resumen de comandos
-
+## Statement
 El estudiante creará, configurará, verificará y eliminará una cuenta de usuario local en Windows 10 Pro, utilizando su propio apellido como identificador (por ejemplo, `Garcia01`). Asimismo, explorará la administración de usuarios y grupos y su relación con la autenticación, autorización y seguridad del sistema operativo.
 
 Finalmente, presentará un informe individual que incluya los comandos ejecutados, capturas de pantalla de los procedimientos realizados y una breve explicación de los resultados obtenidos.
