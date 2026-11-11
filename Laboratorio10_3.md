@@ -228,8 +228,8 @@ Esto significa que el propietario `root` y los integrantes del grupo `desarrollo
 
 ## Statement
 
-El estudiante identificará, interpretará y modificará los permisos de acceso a archivos y directorios en Ubuntu Linux, utilizando los comandos `chmod` y `chown`. Asimismo, configurará permisos para propietarios, grupos y otros usuarios, y creará un directorio compartido para analizar cómo el sistema operativo controla el acceso a los recursos mediante mecanismos de autorización.
+El estudiante identificará, interpretará y modificará los permisos de acceso a archivos y directorios en Ubuntu Linux (nombrados con sus apellidos o nombres), utilizando los comandos `chmod` y `chown`. Asimismo, configurará permisos para propietarios, grupos y otros usuarios, y creará un directorio compartido para analizar cómo el sistema operativo controla el acceso a los recursos mediante mecanismos de autorización.
 
 Finalmente, presentará un informe individual que incluya los comandos ejecutados, capturas de pantalla de los cambios de permisos y una explicación de los resultados obtenidos.
 
-Concepto fundamental: en Linux, los permisos determinan qué operaciones puede realizar cada usuario sobre los archivos y directorios. Esto permite aplicar el principio de mínimo privilegio y proteger los recursos del sistema operativo.
+
