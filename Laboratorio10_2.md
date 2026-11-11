@@ -2,7 +2,6 @@
 
 Guía para crear, comprobar, utilizar y eliminar cuentas locales mediante la terminal de Ubuntu.
 
-> **Personalización para cada estudiante:** reemplaza `#APELLIDO` por tu apellido, escrito en minúsculas y sin tildes ni espacios. Por ejemplo, si tu apellido es García, utiliza `garcia`. Para evitar conflictos entre cuentas, puedes añadir un número: `garcia01`. En todos los comandos de esta guía, sustituye `#APELLIDO` por el nombre de usuario elegido. No escribas literalmente el símbolo `#` en los comandos.
 
 ## 1. Identificar el usuario actual
 
