@@ -28,7 +28,7 @@ id
 Solicitar la creación de la cuenta y establecer su contraseña:
 
 ```bash
-sudo adduser #APELLIDO
+sudo adduser #nombre
 ```
 
 Ubuntu solicitará una contraseña y algunos datos adicionales. Los datos adicionales pueden dejarse en blanco si no son necesarios.
@@ -38,13 +38,13 @@ Ubuntu solicitará una contraseña y algunos datos adicionales. Los datos adicio
 Consultar la identidad y los grupos de la cuenta:
 
 ```bash
-id #APELLIDO
+id #nombre
 ```
 
 Consultar la entrada de la cuenta:
 
 ```bash
-getent passwd #APELLIDO
+getent passwd #nombre
 ```
 
 Listar las cuentas registradas en el sistema:
@@ -74,19 +74,19 @@ getent group desarrollo
 Agregar la cuenta al grupo secundario `desarrollo`:
 
 ```bash
-sudo usermod -aG desarrollo #APELLIDO
+sudo usermod -aG desarrollo #nombre
 ```
 
 Verificar los grupos de la cuenta:
 
 ```bash
-groups #APELLIDO
+groups #nombre
 ```
 
 También puedes consultar UID, GID y grupos:
 
 ```bash
-id #APELLIDO
+id #nombre
 ```
 
 Consultar los integrantes del grupo:
@@ -102,7 +102,7 @@ getent group desarrollo
 Cambiar a la cuenta creada:
 
 ```bash
-su - #APELLIDO
+su - #nombre
 ```
 
 Introduce la contraseña de esa cuenta.
@@ -130,19 +130,19 @@ exit
 Eliminar la cuenta, conservando su directorio personal:
 
 ```bash
-sudo deluser #APELLIDO
+sudo deluser #nombre
 ```
 
 Si también se desea eliminar el directorio personal y los archivos de esa cuenta:
 
 ```bash
-sudo deluser --remove-home #APELLIDO
+sudo deluser --remove-home #nombre
 ```
 
 Verificar que la cuenta ya no existe:
 
 ```bash
-id #APELLIDO
+id #nombre
 ```
 
 El sistema debe indicar que no existe ese usuario.
@@ -153,6 +153,6 @@ El sistema debe indicar que no existe ese usuario.
 
 El estudiante creará, configurará, verificará y eliminará una cuenta de usuario local en Ubuntu Linux, utilizando su propio apellido como identificador. Asimismo, creará un grupo, incorporará su cuenta y comprobará la pertenencia a los grupos mediante comandos de terminal, comprendiendo su relación con la autenticación, autorización y seguridad del sistema operativo.
 
-Finalmente, presentará un informe individual** que incluya los comandos ejecutados, capturas de pantalla de los procedimientos realizados y una breve explicación de los resultados obtenidos.
+Finalmente, presentará un informe individual que incluya los comandos ejecutados, capturas de pantalla de los procedimientos realizados y una breve explicación de los resultados obtenidos.
 
 
