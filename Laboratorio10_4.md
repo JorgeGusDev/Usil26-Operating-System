@@ -51,8 +51,8 @@ Establecer las siguientes condiciones para los tres usuarios:
 
 | Parámetro                           | Política |
 | ----------------------------------- | -------- |
-| Duración máxima de contraseña       | 30 días  |
-| Tiempo mínimo entre cambios         | 2 días   |
+| Tiempo mínimo entre cambios       | 2 días  |
+| Duración máxima de contraseña         | 30 días   |
 | Aviso antes del vencimiento         | 7 días   |
 | Inactividad después del vencimiento | 5 días   |
 
