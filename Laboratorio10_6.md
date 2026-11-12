@@ -57,6 +57,6 @@ En nuestro ejemplo, acceder a 150 archivos a las 03:00 es muy diferente del comp
 
 Importante: estamos trabajando con accesos simulados. El modelo no consulta los permisos reales de Linux ni bloquea usuarios.
 
-### Individual Challenge: AI-Based Access Anomaly Detection
+### Statement
 
 El estudiante deberá implementar un modelo de detección de anomalías mediante **Isolation Forest** en Ubuntu Linux, utilizando Python y scikit-learn desde la terminal. Para ello, generará un conjunto de al menos **20 registros simulados de acceso a archivos**, considerando la hora de acceso y la cantidad de documentos consultados, e incorporará algunos comportamientos inusuales. Finalmente, deberá ejecutar el modelo, identificar los accesos clasificados como sospechosos y presentar un informe individual con el código utilizado, capturas de los resultados y una breve explicación sobre cómo la Inteligencia Artificial puede complementar los mecanismos tradicionales de control de acceso de un sistema operativo.
