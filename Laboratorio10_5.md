@@ -251,3 +251,5 @@ No se elimina ni modifica el resto del contenido personal de `JorgeGus`.
 ## Statement – Individual Challenge
 
 El estudiante deberá implementar de manera individual un escenario de automatización del control de acceso en Ubuntu Linux, creando cinco usuarios locales y distribuyéndolos automáticamente en dos grupos de trabajo mediante comandos Bash. Asimismo, deberá generar al menos diez documentos y organizarlos en dos directorios compartidos ubicados dentro de su carpeta personal (`/home/usuario/`), configurando los propietarios, grupos y permisos correspondientes para garantizar que cada grupo pueda acceder únicamente a los documentos autorizados. Finalmente, deberá demostrar la colaboración entre usuarios mediante operaciones de lectura y escritura, comprobar que los usuarios externos tienen el acceso restringido y presentar un informe individual con los comandos ejecutados, capturas de pantalla, resultados de las pruebas y una breve explicación de cómo Linux implementa el control de acceso discrecional (DAC).
+
+Presentación: Un informe con capturas, captions y parrafos explicativos
