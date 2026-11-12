@@ -21,7 +21,7 @@ nano detector.py
 
 Pegar el siguiente código:
 
-```
+```python
 from sklearn.ensemble import IsolationForest# [Hora de acceso, cantidad de archivos]accesos = [    [8, 3],    [9, 4],    [10, 5],    [11, 3],    [14, 6],    [15, 4],    [16, 5],    [3, 150]]modelo = IsolationForest(contamination=0.125, random_state=42)modelo.fit(accesos)for acceso, resultado in zip(accesos, modelo.predict(accesos)):    estado = "SOSPECHOSO" if resultado == -1 else "NORMAL"    print(f"Hora: {acceso[0]} | Archivos: {acceso[1]} | {estado}")
 ```
 
