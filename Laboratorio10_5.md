@@ -1,16 +1,12 @@
-# Lab10_5: Automatización de usuarios, grupos y permisos de acceso en Ubuntu Linux
-
-Objetivo: automatizar la creación de usuarios, la asignación de grupos y la configuración de permisos de acceso a archivos y directorios mediante comandos Bash, comprendiendo cómo Linux administra la autorización y protección de sus recursos.
-
 ## 1. Creación automática de usuarios
 
-Utilizaremos un bucle `for` para crear tres usuarios locales y sus respectivos directorios personales.
+Crear tres usuarios locales:
 
 ```
 for usuario in alumno1 alumno2 alumno3; do sudo useradd -m "$usuario"; done
 ```
 
-Verificar los usuarios creados:
+Verificar los usuarios:
 
 ```
 getent passwd alumno1 alumno2 alumno3
@@ -22,7 +18,7 @@ Consultar sus identificadores:
 id alumno1
 ```
 
-## 2. Creación de un grupo y asignación automática de usuarios
+## 2. Creación del grupo y asignación de usuarios
 
 Crear el grupo `investigacion`:
 
@@ -36,150 +32,209 @@ Incorporar automáticamente los tres usuarios:
 for usuario in alumno1 alumno2 alumno3; do sudo usermod -aG investigacion "$usuario"; done
 ```
 
-Verificar los integrantes del grupo:
+Verificar:
 
 ```
 getent group investigacion
 ```
 
-Resultado de ejemplo:
-
-```
-investigacion:x:1004:alumno1,alumno2,alumno3
-```
-
-El identificador numérico del grupo puede variar.
-
 ## 3. Generación automática de documentos
 
-Crear un directorio compartido:
+Crear el directorio compartido dentro de `JorgeGus`:
 
 ```
-sudo mkdir -p /opt/investigacion
+mkdir -p ~/investigacion
 ```
 
 Generar cinco documentos automáticamente:
 
 ```
-for i in {1..5}; do echo "Documento $i" | sudo tee "/opt/investigacion/documento$i.txt" > /dev/null; done
+for i in {1..5}; do echo "Documento $i" > "$HOME/investigacion/documento$i.txt"; done
 ```
 
-Verificar los archivos creados:
+Verificar:
 
 ```
-ls -l /opt/investigacion
+ls -l ~/investigacion
 ```
 
-## 4. Asignación automática de propietarios y permisos
-
-Asignar el directorio y sus archivos al grupo `investigacion`:
+Estructura resultante:
 
 ```
-sudo chown -R root:investigacion /opt/investigacion
+/home/JorgeGus/
+└── investigacion/
+    ├── documento1.txt
+    ├── documento2.txt
+    ├── documento3.txt
+    ├── documento4.txt
+    └── documento5.txt
 ```
 
-Configurar los permisos del directorio:
+## 4. Asignación de propietarios y permisos
+
+Asignar la carpeta y sus documentos al usuario `JorgeGus` y al grupo `investigacion`:
 
 ```
-sudo chmod 2770 /opt/investigacion
+sudo chown -R JorgeGus:investigacion ~/investigacion
 ```
 
-El valor `2770` representa:
-
-| Valor | Significado                                                                                    |
-| ----- | ---------------------------------------------------------------------------------------------- |
-| `2`   | Activa SGID: los nuevos archivos y subdirectorios heredan el grupo propietario del directorio. |
-| `7`   | Propietario: lectura, escritura y ejecución.                                                   |
-| `7`   | Grupo: lectura, escritura y ejecución.                                                         |
-| `0`   | Otros usuarios: sin permisos.                                                                  |
-
-Configurar automáticamente los permisos de los documentos:
+Configurar permisos del directorio:
 
 ```
-sudo chmod 660 /opt/investigacion/*.txt
+chmod 2770 ~/investigacion
 ```
 
-Con `660`, el propietario y el grupo pueden leer y modificar los documentos, mientras que otros usuarios no tienen acceso.
+Configurar permisos de los documentos:
+
+```
+chmod 660 ~/investigacion/*.txt
+```
+
+| Valor | Significado                                                |
+| ----- | ---------------------------------------------------------- |
+| `2`   | SGID: los nuevos archivos heredan el grupo del directorio. |
+| `7`   | Propietario: lectura, escritura y ejecución.               |
+| `7`   | Grupo: lectura, escritura y ejecución.                     |
+| `0`   | Otros usuarios: sin acceso.                                |
+
+### Permitir que los alumnos lleguen a la carpeta compartida
+
+Como la carpeta está dentro de `/home/JorgeGus`, debemos autorizar el recorrido por ese directorio personal sin permitir listar sus archivos.
+
+Instalar la herramienta ACL si es necesario:
+
+```
+sudo apt install acl -y
+```
+
+Conceder únicamente permiso de recorrido al grupo:
+
+```
+sudo setfacl -m g:investigacion:--x /home/JorgeGus
+```
+
+Este comando no modifica `/root` ni `/`. Solo añade una autorización específica sobre `/home/JorgeGus`.
 
 ## 5. Verificación de permisos
 
 Consultar los permisos del directorio:
 
 ```
-ls -ld /opt/investigacion
+ls -ld ~/investigacion
 ```
 
-Consultar los permisos de los archivos:
+Consultar los permisos de los documentos:
 
 ```
-ls -l /opt/investigacion
+ls -l ~/investigacion
 ```
 
 Resultado esperado:
 
 ```
-drwxrws--- root investigacion /opt/investigacion
--rw-rw---- root investigacion documento1.txt
--rw-rw---- root investigacion documento2.txt
--rw-rw---- root investigacion documento3.txt
--rw-rw---- root investigacion documento4.txt
--rw-rw---- root investigacion documento5.txt
+drwxrws--- JorgeGus investigacion investigacion
+-rw-rw---- JorgeGus investigacion documento1.txt
+-rw-rw---- JorgeGus investigacion documento2.txt
+-rw-rw---- JorgeGus investigacion documento3.txt
+-rw-rw---- JorgeGus investigacion documento4.txt
+-rw-rw---- JorgeGus investigacion documento5.txt
 ```
 
-La letra `s` en `drwxrws---` indica que el directorio tiene activado el bit SGID.
+## 6. Comprobación del acceso compartido
 
-## 6. Comprobación del control de acceso
-
-Desde el usuario administrador `JorgeGus`, intentar acceder al documento:
+### Prueba 1. JorgeGus consulta un documento
 
 ```
-cat /opt/investigacion/documento1.txt
+cat ~/investigacion/documento1.txt
 ```
 
-Si `JorgeGus` no pertenece al grupo `investigacion` y no tiene otros privilegios aplicables, el resultado será:
+Resultado:
 
 ```
-Permission denied
+Documento 1
 ```
 
-Ahora realizar la misma operación utilizando la identidad de `alumno1`:
+### Prueba 2. alumno1 modifica el documento
 
 ```
-sudo -u alumno1 cat /opt/investigacion/documento1.txt
+sudo -u alumno1 sh -c 'echo "Investigación realizada por alumno1" >> /home/JorgeGus/investigacion/documento1.txt'
+```
+
+### Prueba 3. alumno2 consulta el mismo documento
+
+```
+sudo -u alumno2 cat /home/JorgeGus/investigacion/documento1.txt
 ```
 
 Resultado esperado:
 
 ```
 Documento 1
+Investigación realizada por alumno1
 ```
 
-Comprobar que el usuario puede modificar el documento:
+### Prueba 4. alumno3 modifica el documento
 
 ```
-sudo -u alumno1 sh -c 'echo "Modificado por alumno1" >> /opt/investigacion/documento1.txt'
+sudo -u alumno3 sh -c 'echo "Revisión realizada por alumno3" >> /home/JorgeGus/investigacion/documento1.txt'
 ```
 
-Verificar el contenido:
+### Prueba 5. JorgeGus verifica los cambios
 
 ```
-cat /opt/investigacion/documento1.txt
+cat ~/investigacion/documento1.txt
 ```
 
-De esta manera se comprueba que los permisos establecidos permiten el acceso a los integrantes del grupo autorizado.
-
-## 7. Automatización de la eliminación de recursos
-
-Una vez concluida la práctica, eliminar los usuarios creados:
+Resultado esperado:
 
 ```
-for usuario in alumno1 alumno2 alumno3; do sudo userdel -r "$usuario"; done
+Documento 1
+Investigación realizada por alumno1
+Revisión realizada por alumno3
 ```
 
-Eliminar el directorio compartido:
+De esta manera, los tres alumnos colaboran sobre un mismo archivo mediante los permisos del grupo `investigacion`.
+
+### Prueba 6. Verificar el acceso denegado a otros usuarios
+
+Crear un usuario que no pertenezca al grupo:
 
 ```
-sudo rm -r /opt/investigacion
+sudo useradd -m visitante1
+```
+
+Intentar leer el documento:
+
+```
+sudo -u visitante1 cat /home/JorgeGus/investigacion/documento1.txt
+```
+
+Resultado esperado:
+
+```
+Permission denied
+```
+
+Esto demuestra que los usuarios ajenos al grupo no pueden acceder al recurso.
+
+## 7. Eliminación de recursos del laboratorio
+
+Eliminar los usuarios de prueba:
+
+```
+for usuario in alumno1 alumno2 alumno3 visitante1; do sudo userdel -r "$usuario"; done
+```
+
+Eliminar únicamente la carpeta creada para el laboratorio:
+
+```
+rm -r ~/investigacion
+```
+
+Retirar la autorización ACL añadida a la carpeta personal:
+
+```
+sudo setfacl -x g:investigacion /home/JorgeGus
 ```
 
 Eliminar el grupo:
@@ -188,7 +243,8 @@ Eliminar el grupo:
 sudo groupdel investigacion
 ```
 
+No se elimina ni modifica el resto del contenido personal de `JorgeGus`.
 
-## Statement
+## Statement – Individual Challenge
 
-El estudiante deberá implementar de manera individual un escenario de automatización del control de acceso en Ubuntu Linux, creando **cinco usuarios locales** identificados con nombres de su elección y distribuyéndolos automáticamente en **dos grupos de trabajo** mediante comandos Bash. Asimismo, deberá generar al menos **diez documentos**, organizarlos en dos directorios compartidos y configurar sus propietarios y permisos para garantizar que cada grupo pueda acceder únicamente a los documentos que le corresponden. Finalmente, deberá comprobar mediante comandos de terminal que los usuarios autorizados pueden leer y modificar sus archivos, mientras que los usuarios de otros grupos tienen el acceso restringido, y presentar un **informe individual** que incluya los comandos ejecutados, capturas de pantalla, resultados de las pruebas y una breve explicación de cómo la automatización contribuye a la administración segura de usuarios y recursos del sistema operativo.
+El estudiante deberá implementar de manera individual un escenario de automatización del control de acceso en Ubuntu Linux, creando cinco usuarios locales y distribuyéndolos automáticamente en dos grupos de trabajo mediante comandos Bash. Asimismo, deberá generar al menos diez documentos y organizarlos en dos directorios compartidos ubicados dentro de su carpeta personal (`/home/usuario/`), configurando los propietarios, grupos y permisos correspondientes para garantizar que cada grupo pueda acceder únicamente a los documentos autorizados. Finalmente, deberá demostrar la colaboración entre usuarios mediante operaciones de lectura y escritura, comprobar que los usuarios externos tienen el acceso restringido y presentar un informe individual con los comandos ejecutados, capturas de pantalla, resultados de las pruebas y una breve explicación de cómo Linux implementa el control de acceso discrecional (DAC).
