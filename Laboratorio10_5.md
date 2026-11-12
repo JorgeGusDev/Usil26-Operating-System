@@ -1,3 +1,6 @@
+
+# Lab10_5: Automatización de usuarios, grupos y permisos de acceso en Ubuntu Linux
+
 ## 1. Creación automática de usuarios
 
 Crear tres usuarios locales:
