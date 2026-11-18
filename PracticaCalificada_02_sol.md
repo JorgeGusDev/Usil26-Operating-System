@@ -94,7 +94,7 @@ newgrp desarrollo
 
 Porque el directorio tiene permisos `2770` y el archivo `660`, impidiendo el acceso a usuarios externos al grupo `desarrollo`.
 
-Una alternativa sin ACL es autorizar el acceso mediante un grupo de lectura específico, configurando permisos `750` en el directorio y `640` en el archivo, con el grupo autorizado como propietario de grupo. Esto requiere reorganizar los grupos para conservar también el acceso de Desarrollo. No debe concederse acceso de escritura a Auditoría.
+Una alternativa es autorizar el acceso mediante un grupo de lectura específico, configurando permisos `750` en el directorio y `640` en el archivo, con el grupo autorizado como propietario de grupo. Esto requiere reorganizar los grupos para conservar también el acceso de Desarrollo. No debe concederse acceso de escritura a Auditoría.
 
 **3. Situación C. ¿Qué instrucción provoca el cambio inmediato de contraseña y qué ocurriría al eliminarla? (1 punto)**
 
